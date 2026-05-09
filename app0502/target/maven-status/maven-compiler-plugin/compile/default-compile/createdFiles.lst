@@ -1,0 +1,14 @@
+rs/ac/bg/fon/app0502/repository/impl/PredavacRepositoryJPA.class
+rs/ac/bg/fon/app0502/dto/ZvanjeDto.class
+rs/ac/bg/fon/app0502/App0502.class
+rs/ac/bg/fon/app0502/repository/impl/PredavacRepositorySpringJDBC.class
+rs/ac/bg/fon/app0502/repository/PredavacRepository.class
+rs/ac/bg/fon/app0502/service/impl/PredavacServiceImpl.class
+rs/ac/bg/fon/app0502/repository/impl/PredavacRepositoryJDBC.class
+rs/ac/bg/fon/app0502/dto/PredavacDto.class
+rs/ac/bg/fon/app0502/domain/Predavac.class
+rs/ac/bg/fon/app0502/dto/KatedraDto.class
+rs/ac/bg/fon/app0502/config/AppConfig.class
+rs/ac/bg/fon/app0502/domain/Katedra.class
+rs/ac/bg/fon/app0502/service/PredavacService.class
+rs/ac/bg/fon/app0502/domain/Zvanje.class
