@@ -4,17 +4,17 @@
  */
 package rs.ac.bg.fon.app0502.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
- * @author mihajlo
+ * @author student2
  */
 public class PredavacDto {
     private Long id;
     private String ime;
     private String prezime;
-    private Date datumRodjenja;
+    private LocalDate datumRodjenja;
     private KatedraDto katedra;
     private ZvanjeDto zvanje;
 
@@ -22,7 +22,7 @@ public class PredavacDto {
         
     }
 
-    public PredavacDto(String ime, String prezime, Date datumRodjenja, KatedraDto katedra, ZvanjeDto zvanje) {
+    public PredavacDto(String ime, String prezime, LocalDate datumRodjenja, KatedraDto katedra, ZvanjeDto zvanje) {
         this.ime = ime;
         this.prezime = prezime;
         this.datumRodjenja = datumRodjenja;
@@ -30,7 +30,7 @@ public class PredavacDto {
         this.zvanje = zvanje;
     }
     
-    public PredavacDto(Long id, String ime, String prezime, Date datumRodjenja, KatedraDto katedra, ZvanjeDto zvanje) {
+    public PredavacDto(Long id, String ime, String prezime, LocalDate datumRodjenja, KatedraDto katedra, ZvanjeDto zvanje) {
         this.id = id;
         this.ime = ime;
         this.prezime = prezime;
@@ -63,11 +63,11 @@ public class PredavacDto {
         this.prezime = prezime;
     }
 
-    public Date getDatumRodjenja() {
+    public LocalDate getDatumRodjenja() {
         return datumRodjenja;
     }
 
-    public void setDatumRodjenja(Date datumRodjenja) {
+    public void setDatumRodjenja(LocalDate datumRodjenja) {
         this.datumRodjenja = datumRodjenja;
     }
 

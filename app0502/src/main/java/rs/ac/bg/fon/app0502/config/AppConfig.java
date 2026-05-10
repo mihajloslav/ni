@@ -7,9 +7,11 @@ package rs.ac.bg.fon.app0502.config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import javax.sql.DataSource;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,7 +23,7 @@ import rs.ac.bg.fon.app0502.service.impl.PredavacServiceImpl;
 
 /**
  *
- * @author mihajlo
+ * @author student2
  */
 @ComponentScan(basePackages = {"rs.ac.bg.fon.app0502"})
 public class AppConfig {
@@ -31,7 +33,7 @@ public class AppConfig {
         return DriverManager.getConnection("jdbc:mysql://localhost/njt_priprema", "root", "");
     }
 
-    @Bean
+    @Bean(value = "emf")
     public EntityManagerFactory createEntityManagerFactory() {
         return Persistence.createEntityManagerFactory("app0502PU");
     }
@@ -50,6 +52,10 @@ public class AppConfig {
     public JdbcTemplate getJdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
+    @Bean(value = "sf")
+    public SessionFactory getSessionFactory(){
+        return new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+    }
     //---------------------------------------------------------------------
 
     @Bean(value = "predavacServiceJDBC")
@@ -66,4 +72,9 @@ public class AppConfig {
     public PredavacService createPredavacServiceSpringJDBC(@Qualifier(value = "predavacRepositorySpringJDBC") PredavacRepository predavacRepository) {
         return new PredavacServiceImpl(predavacRepository);
     }
+    @Bean(value = "predavacServiceHibernate")
+    public PredavacService createPredavacServiceHibernate(@Qualifier(value ="predavacRepositoryHibernate") PredavacRepository predavacRepository){
+        return new PredavacServiceImpl(predavacRepository);
+    }
+    
 }

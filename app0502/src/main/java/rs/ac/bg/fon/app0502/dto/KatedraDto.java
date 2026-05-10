@@ -6,7 +6,7 @@ package rs.ac.bg.fon.app0502.dto;
 
 /**
  *
- * @author mihajlo
+ * @author student2
  */
 public class KatedraDto {
      private Long id;

@@ -4,8 +4,11 @@
 
 package rs.ac.bg.fon.app0502;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -49,14 +52,17 @@ public class App0502 {
     private PredavacService predavacServiceJDBC;
     private PredavacService predavacServiceJPA;
     private PredavacService predavacServiceSpringJDBC;
+    private PredavacService predavacServiceHibernate;
 
     @Autowired
     public App0502(@Qualifier(value = "predavacServiceJDBC")PredavacService predavacServiceJDBC, 
             @Qualifier(value = "predavacServiceJPA")PredavacService predavacServiceJPA, 
-            @Qualifier(value = "predavacServiceSpringJDBC")PredavacService predavacServiceSpringJDBC) {
+            @Qualifier(value = "predavacServiceSpringJDBC")PredavacService predavacServiceSpringJDBC,
+            @Qualifier(value = "predavacServiceHibernate")PredavacService predavacServiceHibernate) {
         this.predavacServiceJDBC = predavacServiceJDBC;
         this.predavacServiceJPA = predavacServiceJPA;
         this.predavacServiceSpringJDBC = predavacServiceSpringJDBC;
+        this.predavacServiceHibernate = predavacServiceHibernate;
     }
     
     public static void main(String[] args) {
@@ -69,16 +75,15 @@ public class App0502 {
         
         
         
-        Calendar cal = Calendar.getInstance();
-        cal.set(2000, Calendar.OCTOBER, 10);
-        PredavacDto predavacDto = new PredavacDto("Test2", "Testic2", cal.getTime(), katedraDto, zvanjeDto);
+        PredavacDto predavacDto = new PredavacDto("Marko", "Brankovic", LocalDate.of(1995, 1, 1), katedraDto, zvanjeDto);
 
         
-        System.out.println("Unesite broj: 0, 1, 2\n\n0-JDBC\n1-JPA\n2-Spring JDBC\n\nUnos:");
+        System.out.println("Unesite broj: 0, 1, 2\n\n0-JDBC\n1-JPA\n2-Spring JDBC\n3-Hibernate ORM\n\nUnos:");
         Scanner s = new Scanner(System.in);
         int broj;
         broj = s.nextInt();
         app.savePredavac(predavacDto, broj);
+        //app.findAllPredavaci(broj);
     }
 
     private void savePredavac(PredavacDto predavacDto, int broj) {
@@ -92,8 +97,107 @@ public class App0502 {
             case 2:
                 predavacServiceSpringJDBC.save(predavacDto);
                 break;
+            case 3:
+                predavacServiceHibernate.save(predavacDto);
+                break;
             default:
                 System.out.println("UNELI STE LOŠ BROJ!!!");
+        }
+    }
+
+    private void findPredavacById(Long id, int broj) {
+        switch (broj) {
+            case 0: {
+                PredavacDto predavacDto = predavacServiceJDBC.findById(id);
+                ispisiPredavca(predavacDto);
+                break;
+            }
+            case 1: {
+                PredavacDto predavacDto = predavacServiceJPA.findById(id);
+                ispisiPredavca(predavacDto);
+                break;
+            }
+            case 2: {
+                PredavacDto predavacDto = predavacServiceSpringJDBC.findById(id);
+                ispisiPredavca(predavacDto);
+                break;
+            }
+            default:
+                System.out.println("UNELI STE LOŠ BROJ!!!");
+        }
+    }
+
+    private void findAllPredavaci(int broj) {
+        switch (broj) {
+            case 0: {
+                List<PredavacDto> predavci = predavacServiceJDBC.findAll();
+                ispisiPredavace(predavci);
+                break;
+            }
+            case 1: {
+                List<PredavacDto> predavci = predavacServiceJPA.findAll();
+                ispisiPredavace(predavci);
+                break;
+            }
+            case 2: {
+                List<PredavacDto> predavci = predavacServiceSpringJDBC.findAll();
+                ispisiPredavace(predavci);
+                break;
+            }
+            default:
+                System.out.println("UNELI STE LOŠ BROJ!!!");
+        }
+    }
+
+    private void updatePredavac(PredavacDto predavacDto, int broj) {
+        switch (broj) {
+            case 0:
+                predavacServiceJDBC.update(predavacDto);
+                break;
+            case 1:
+                predavacServiceJPA.update(predavacDto);
+                break;
+            case 2:
+                predavacServiceSpringJDBC.update(predavacDto);
+                break;
+            default:
+                System.out.println("UNELI STE LOŠ BROJ!!!");
+        }
+    }
+
+    private void deletePredavac(Long id, int broj) {
+        switch (broj) {
+            case 0:
+                predavacServiceJDBC.delete(id);
+                break;
+            case 1:
+                predavacServiceJPA.delete(id);
+                break;
+            case 2:
+                predavacServiceSpringJDBC.delete(id);
+                break;
+            default:
+                System.out.println("UNELI STE LOŠ BROJ!!!");
+        }
+    }
+
+    private void ispisiPredavca(PredavacDto predavacDto) {
+        if (predavacDto == null) {
+            System.out.println("Predavac nije pronadjen!!!");
+            return;
+        }
+
+        System.out.println(predavacDto);
+    }
+
+    private void ispisiPredavace(List<PredavacDto> predavci) {
+        if (predavci == null || predavci.isEmpty()) {
+            System.out.println("Nema predavaca u listi!!!");
+            return;
+        }
+
+        for (PredavacDto predavacDto : predavci) {
+            System.out.println(predavacDto);
         }
     }
 }

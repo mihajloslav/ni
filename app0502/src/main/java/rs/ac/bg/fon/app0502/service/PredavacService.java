@@ -4,12 +4,17 @@
  */
 package rs.ac.bg.fon.app0502.service;
 
+import java.util.List;
 import rs.ac.bg.fon.app0502.dto.PredavacDto;
 
 /**
  *
- * @author mihajlo
+ * @author student2
  */
 public interface PredavacService {
     void save(PredavacDto predavacDto);
+    PredavacDto findById(Long id);
+    List<PredavacDto> findAll();
+    void update(PredavacDto predavacDto);
+    void delete(Long id);
 }

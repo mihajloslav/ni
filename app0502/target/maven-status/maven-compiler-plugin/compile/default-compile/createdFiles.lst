@@ -2,6 +2,7 @@ rs/ac/bg/fon/app0502/repository/impl/PredavacRepositoryJPA.class
 rs/ac/bg/fon/app0502/dto/ZvanjeDto.class
 rs/ac/bg/fon/app0502/App0502.class
 rs/ac/bg/fon/app0502/repository/impl/PredavacRepositorySpringJDBC.class
+rs/ac/bg/fon/app0502/repository/impl/PredavacRepositoryHibernate.class
 rs/ac/bg/fon/app0502/repository/PredavacRepository.class
 rs/ac/bg/fon/app0502/service/impl/PredavacServiceImpl.class
 rs/ac/bg/fon/app0502/repository/impl/PredavacRepositoryJDBC.class

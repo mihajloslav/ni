@@ -5,24 +5,22 @@
 package rs.ac.bg.fon.app0502.domain;
 
 import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import java.time.LocalDate;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
 
 /**
  *
- * @author mihajlo
+ * @author student2
  */
 @Entity
 @Table(name = "predavac")
@@ -48,19 +46,19 @@ public class Predavac implements Serializable {
     private String prezime;
     @Basic(optional = false)
     @Column(name = "datum_rodjenja")
-    @Temporal(TemporalType.DATE)
-    private Date datumRodjenja;
+    private LocalDate datumRodjenja;
     @JoinColumn(name = "katedra_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Katedra katedra;
     @JoinColumn(name = "zvanje_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false) /*@ManyToOne(optional = false,
+           cascade = {CascadeType.PERSIST, CascadeType.MERGE})*/
     private Zvanje zvanje;
 
     public Predavac() {
     }
 
-    public Predavac(String ime, String prezime, Date datumRodjenja, Katedra katedra, Zvanje zvanje) {
+    public Predavac(String ime, String prezime, LocalDate datumRodjenja, Katedra katedra, Zvanje zvanje) {
         this.ime = ime;
         this.prezime = prezime;
         this.datumRodjenja = datumRodjenja;
@@ -68,7 +66,7 @@ public class Predavac implements Serializable {
         this.zvanje = zvanje;
     }
     
-    public Predavac(Long id, String ime, String prezime, Date datumRodjenja, Katedra katedra, Zvanje zvanje) {
+    public Predavac(Long id, String ime, String prezime, LocalDate datumRodjenja, Katedra katedra, Zvanje zvanje) {
         this.id = id;
         this.ime = ime;
         this.prezime = prezime;
@@ -81,7 +79,7 @@ public class Predavac implements Serializable {
         this.id = id;
     }
 
-    public Predavac(Long id, String ime, String prezime, Date datumRodjenja) {
+    public Predavac(Long id, String ime, String prezime, LocalDate datumRodjenja) {
         this.id = id;
         this.ime = ime;
         this.prezime = prezime;
@@ -112,11 +110,11 @@ public class Predavac implements Serializable {
         this.prezime = prezime;
     }
 
-    public Date getDatumRodjenja() {
+    public LocalDate getDatumRodjenja() {
         return datumRodjenja;
     }
 
-    public void setDatumRodjenja(Date datumRodjenja) {
+    public void setDatumRodjenja(LocalDate datumRodjenja) {
         this.datumRodjenja = datumRodjenja;
     }
 
@@ -132,7 +130,7 @@ public class Predavac implements Serializable {
         return zvanje;
     }
 
-    public void setZvanjeId(Zvanje zvanje) {
+    public void setZvanje(Zvanje zvanje) {
         this.zvanje = zvanje;
     }
 

@@ -7,6 +7,7 @@
 /home/mihajlo/NapredneJavaTehnologije/app0502/src/main/java/rs/ac/bg/fon/app0502/dto/PredavacDto.java
 /home/mihajlo/NapredneJavaTehnologije/app0502/src/main/java/rs/ac/bg/fon/app0502/dto/ZvanjeDto.java
 /home/mihajlo/NapredneJavaTehnologije/app0502/src/main/java/rs/ac/bg/fon/app0502/repository/PredavacRepository.java
+/home/mihajlo/NapredneJavaTehnologije/app0502/src/main/java/rs/ac/bg/fon/app0502/repository/impl/PredavacRepositoryHibernate.java
 /home/mihajlo/NapredneJavaTehnologije/app0502/src/main/java/rs/ac/bg/fon/app0502/repository/impl/PredavacRepositoryJDBC.java
 /home/mihajlo/NapredneJavaTehnologije/app0502/src/main/java/rs/ac/bg/fon/app0502/repository/impl/PredavacRepositoryJPA.java
 /home/mihajlo/NapredneJavaTehnologije/app0502/src/main/java/rs/ac/bg/fon/app0502/repository/impl/PredavacRepositorySpringJDBC.java
