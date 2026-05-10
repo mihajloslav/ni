@@ -5,7 +5,6 @@
 package rs.ac.bg.fon.app0502;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -75,15 +74,15 @@ public class App0502 {
         
         
         
-        PredavacDto predavacDto = new PredavacDto("Marko", "Brankovic", LocalDate.of(1995, 1, 1), katedraDto, zvanjeDto);
+        PredavacDto predavacDto = new PredavacDto("Test2", "Testic2", LocalDate.of(1990,2,2), katedraDto, zvanjeDto);
 
         
-        System.out.println("Unesite broj: 0, 1, 2\n\n0-JDBC\n1-JPA\n2-Spring JDBC\n3-Hibernate ORM\n\nUnos:");
+        System.out.println("Unesite broj: 0, 1, 2, 3\n\n0-JDBC\n1-JPA\n2-Spring JDBC\n3-Hibernate\n\nUnos:");
         Scanner s = new Scanner(System.in);
         int broj;
         broj = s.nextInt();
-        app.savePredavac(predavacDto, broj);
-        //app.findAllPredavaci(broj);
+        //app.savePredavac(predavacDto, broj);
+        app.findAllPredavaci(broj);
     }
 
     private void savePredavac(PredavacDto predavacDto, int broj) {
@@ -122,6 +121,11 @@ public class App0502 {
                 ispisiPredavca(predavacDto);
                 break;
             }
+            case 3: {
+                PredavacDto predavacDto = predavacServiceHibernate.findById(id);
+                ispisiPredavca(predavacDto);
+                break;
+            }
             default:
                 System.out.println("UNELI STE LOŠ BROJ!!!");
         }
@@ -144,6 +148,11 @@ public class App0502 {
                 ispisiPredavace(predavci);
                 break;
             }
+            case 3: {
+                List<PredavacDto> predavci = predavacServiceHibernate.findAll();
+                ispisiPredavace(predavci);
+                break;
+            }
             default:
                 System.out.println("UNELI STE LOŠ BROJ!!!");
         }
@@ -160,6 +169,9 @@ public class App0502 {
             case 2:
                 predavacServiceSpringJDBC.update(predavacDto);
                 break;
+            case 3:
+                predavacServiceHibernate.update(predavacDto);
+                break;
             default:
                 System.out.println("UNELI STE LOŠ BROJ!!!");
         }
@@ -175,6 +187,9 @@ public class App0502 {
                 break;
             case 2:
                 predavacServiceSpringJDBC.delete(id);
+                break;
+            case 3:
+                predavacServiceHibernate.delete(id);
                 break;
             default:
                 System.out.println("UNELI STE LOŠ BROJ!!!");
