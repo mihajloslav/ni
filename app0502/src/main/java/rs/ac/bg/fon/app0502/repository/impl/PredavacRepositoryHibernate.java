@@ -19,7 +19,7 @@ import rs.ac.bg.fon.app0502.repository.PredavacRepository;
 
 /**
  *
- * @author mihajlo
+ * @author student2
  */
 @Repository(value = "predavacRepositoryHibernate")
 public class PredavacRepositoryHibernate implements PredavacRepository{
