@@ -25,6 +25,27 @@ import rs.ac.bg.fon.app0502.service.PredavacService;
  * @author student2
  */
 
+/* Scanner sc = new Scanner(System.in);
+
+        System.out.println("Unesi ime:");
+        String ime = sc.nextLine();
+
+        System.out.println("Unesi prezime:");
+        String prezime = sc.nextLine();
+
+        System.out.println("Unesi datum rodjenja (yyyy-mm-dd):");
+        LocalDate datum = LocalDate.parse(sc.nextLine());
+
+        System.out.println("Unesi index:");
+        int index = Integer.parseInt(sc.nextLine());
+
+        System.out.println("Ime: " + ime);
+        System.out.println("Prezime: " + prezime);
+        System.out.println("Datum: " + datum);
+        System.out.println("Index: " + index);*/ 
+
+
+
 
 /*Kreirati model podataka koji će omogućiti čuvanje podataka o predavačima.
 Za svakog predavača se čuva ime i prezime,
